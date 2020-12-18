@@ -18,23 +18,32 @@ async def ping(ctx):
 
 bot.run(token)
 
-import discord #discordでBOTを使うのにこれが必ずいる
 
+
+# インストールした discord.py を読み込む
+import discord
+
+# 自分のBotのアクセストークンに置き換えてください
+TOKEN = 'Nzg5NDk4Njg5MDg4NzgyMzM3.X9y78w.pDvXLvWYHvjmY9yQBO4FN_MNAGA'
+
+# 接続に必要なオブジェクトを生成
 client = discord.Client()
 
-@client.event #BOT起動時にCMDに表示される部分で無くてもよい
-async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('------')
-
+# 起動時に動作する処理
 @client.event
-async def on_message(message): #メッセージを受け取る関数なので必ず必要
-    send_message(message)
-    if message.content == "おはよう":
-    #:(コロン)を忘れずつけよう！Enterを押すと自動で改行されるよ！
-        await client.send_message(message.channel, "Hello world!!")
+async def on_ready():
+    # 起動したらターミナルにログイン通知が表示される
+    print('ログインしました')
 
-# この＊＊＊に自分のトークンを書き替える
-client.run(token)
+# メッセージ受信時に動作する処理
+@client.event
+async def on_message(message):
+    # メッセージ送信者がBotだった場合は無視する
+    if message.author.bot:
+        return
+    # 「/neko」と発言したら「にゃーん」が返る処理
+    if message.content == '/neko':
+        await message.channel.send('にゃーん')
+
+# Botの起動とDiscordサーバーへの接続
+client.run(TOKEN)
