@@ -19,13 +19,10 @@ async def ping(ctx):
     await ctx.send('pongg')
 
 @client.event
-async def on_message(message):
-    # メッセージ送信者がBotだった場合は無視する
-    if message.author.bot:
-        return
-    # 「/neko」と発言したら「にゃーん」が返る処理
-    if message.content == 'ねこ':
-        await message.channel.send('にゃーん')
+async def on_message(message): #メッセージを受け取る関数なので必ず必要
+    if message.content == "おはよう":
+    #:(コロン)を忘れずつけよう！Enterを押すと自動で改行されるよ！
+        await client.send_message(message.channel, "Hello world!!") 
 
 bot.run(token)
 client.run(token)
