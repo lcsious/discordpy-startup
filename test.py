@@ -12,10 +12,15 @@ async def on_ready():
     print('------')
 
 @client.event
-async def on_message(message): #メッセージを受け取る関数なので必ず必要
-    if message.content == "おはよう":
-    #:(コロン)を忘れずつけよう！Enterを押すと自動で改行されるよ！
-        await client.send_message(message.channel, "Hello world!!")
+async def on_message(message):
+    # 「おはよう」で始まるか調べる
+    if message.content.startswith("おはよう"):
+        # 送り主がBotだった場合反応したくないので
+        if client.user != message.author:
+            # メッセージを書きます
+            m = "おはようございます" + message.author.name + "さん！"
+            # メッセージが送られてきたチャンネルへメッセージを送ります
+            await message.channel.send(m)
 
 # この＊＊＊に自分のトークンを書き替える
 client.run(token)
