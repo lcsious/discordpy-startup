@@ -31,7 +31,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message): #メッセージを受け取る関数なので必ず必要
-    print(message)
+    send_message(message)
     if message.content == "おはよう":
     #:(コロン)を忘れずつけよう！Enterを押すと自動で改行されるよ！
         await client.send_message(message.channel, "Hello world!!")
