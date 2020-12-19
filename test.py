@@ -10,6 +10,7 @@ async def on_message(message):
     if message.content.startswith("おはよう"):
         # 送り主がBotだった場合反応したくないので
         if client.user != message.author:
+            return
             # メッセージを書きます
             m = "おはようございます" + message.author.nick + "さん！"
             # メッセージが送られてきたチャンネルへメッセージを送ります
@@ -17,6 +18,7 @@ async def on_message(message):
             
     if message.content.startswith("おやすみ"):
         if client.user != message.author:
+            return
             m = "おやすみ！" + message.author.nick + "さん！"
             await message.channel.send(m)
 
