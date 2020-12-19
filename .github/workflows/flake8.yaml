@@ -1,6 +1,6 @@
 name: Check Syntax
 
-on:
+
 
 jobs:
   build:
