@@ -14,7 +14,11 @@ async def on_message(message):
             m = "おはようございます" + message.author.nick + "さん！"
             # メッセージが送られてきたチャンネルへメッセージを送ります
             await message.channel.send(m)
-
+            
+    if message.content.startswith("おやすみ"):
+        if client.user != message.author:
+            m = "おやすみ！" + message.author.nick + "さん！"
+            await message.channel.send(m)
 
 # 実行
 client.run(token)
